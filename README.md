@@ -1,4 +1,4 @@
-A simple ARP spoofing tool developed for ethical hacking practice and self-learning in network security.
+A simple ARP spoofing tool developed for ethical hacking, practice and self-learning in network security.
 
 What does it do?
     The script send ARP packets in the network to trick the router and the target into sending traffic to you.
