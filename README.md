@@ -1,4 +1,7 @@
-arp spoofing tool that sends arp to the router and target in order to make them send massages to you.
+A simple ARP spoofing tool developed for ethical hacking practice and self-learning in network security.
+
+What does it do?
+    The script send ARP pacetks in the network to trick the router and the target into sending traffic to you.
 
 How to use:
     start the program and follow the instructions.
