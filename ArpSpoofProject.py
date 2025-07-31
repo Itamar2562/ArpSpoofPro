@@ -2,6 +2,7 @@ import multiprocessing
 from getmac import get_mac_address
 import scapy.all as scapy
 import time
+import sys
 
 #function gets the subnet mask in either CIDR notation or dotted dicimal format that is changed to CIDR.
 def GetMask() ->str:
@@ -79,7 +80,7 @@ if __name__ == "__main__":
     if(not Targetdict):
         print("No live devices found in the network.")
         time.sleep(2)
-        exit(0)
+        sys.exit(0)
     #else, print the live devices found in the network and continue into the spoofing.
     print("Live device found: ")
     for key,value in Targetdict.items():
