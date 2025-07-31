@@ -1,16 +1,15 @@
-ARP Spoofing Tool
-
+# ARP Spoofing Tool 
 A simple ARP spoofing tool developed for **ethical hacking practice** and **self-learning** in network security.
 
 ---
 
-##What It Does
+## What It Does
 
 This script performs **ARP spoofing** by sending malicious ARP packets to mislead both a target device and the router. It tricks them into sending their network traffic through your machine — enabling packet interception.
 
 ---
 
-##How to Use
+## How to Use
 
 1. **Start the script**.
 2. Follow the prompts:
@@ -21,7 +20,7 @@ This script performs **ARP spoofing** by sending malicious ARP packets to mislea
 
 ---
 
-##Libraries Used
+## Libraries Used
 
 - `scapy` – for crafting and sending ARP packets.
 - `getmac` – for retrieving MAC addresses using IP.
@@ -30,7 +29,7 @@ This script performs **ARP spoofing** by sending malicious ARP packets to mislea
 
 ---
 
-##Dependencies
+## Dependencies
 
 Make sure to install the required libraries using pip:
 
