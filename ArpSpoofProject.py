@@ -82,6 +82,7 @@ if __name__ == "__main__":
     #if the Targetdict is empty, it means no live devices were found in the network.
     if(not Targetdict):
         print("No live devices found in the network.")
+        time.sleep(2)
         exit(0)
     #else, print the live devices found in the network.
     print("Live device found: ")
