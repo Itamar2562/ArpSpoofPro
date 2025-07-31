@@ -8,7 +8,7 @@ import time
 def GetMask() ->str:
     try:
         subnet_mask = input("enter the subnet mask (e.g. 255.255.255.0 or 1-32): ")
-        if subnet_mask.count(".") != 3 and int(subnet_mask)<= 32 and int(subnet_mask) >= 0:
+        if subnet_mask.count(".") != 3:
             return subnet_mask
         subnet_mask = subnet_mask.split(".")
         maskCounter = 0
@@ -20,7 +20,7 @@ def GetMask() ->str:
                 else:
                     break
     except ValueError:
-        print("Invalid subnet mask format. Please enter a valid subnet mask.")    
+        print("Invalid subnet mask format. Please enter a valid subnet mask format.")    
         return GetMask()   
     return str(maskCounter)
     
