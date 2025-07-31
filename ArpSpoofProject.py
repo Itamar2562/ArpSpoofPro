@@ -4,7 +4,7 @@ from getmac import get_mac_address
 import scapy.all as scapy
 import time
 
-#function to get the subnet mask in CIDR notation of ip/mask
+#function gets the subnet mask in either CIDR notation or dotted dicimal format that is changed to CIDR.
 def GetMask() ->str:
     try:
         subnet_mask = input("enter the subnet mask (e.g. 255.255.255.0 or 1-32): ")
@@ -25,24 +25,21 @@ def GetMask() ->str:
     return str(maskCounter)
     
         
-#scans the network for devices and stores their IP and MAC addresses in a ditionary
+#scans the network for devices and stores their IP and MAC addresses in a dictionary.
 def scan(Default, Targetdict,mask, my_ip):
     print("the routers mac: ",Default+"/"+mask)
     response,_= scapy.srp(scapy.Ether(dst="ff:ff:ff:ff:ff:ff")/scapy.ARP(pdst=defaultGatway+"/"+mask), timeout=4, verbose=0)
     for packet in response:
-        # If the response contains an answer, extract the IP and MAC address
+        # If the response contains an answer, extract the IP and MAC address.
         if packet.answer.psrc==my_ip or packet.answer.psrc==Default:
             continue
-        Targetdict[packet.answer.psrc] = packet.answer.hwsrc
-     
-
+        Targetdict[packet.answer.psrc] = packet.answer.hwsrc     
 
     #pdst: target IP address 
     #hwdst:target mac address
     #psrc: source IP address
     #hwsrc: source mac address
-    #sendp is used to send packets in layer 2 (Ethernet)
-    #mac/ip
+
 def spoof(Target_ip, Target_mac,Src_ip, verbose):
     self_mac = scapy.get_if_hwaddr(scapy.conf.iface)
     print("self mac: " + self_mac)
@@ -82,7 +79,7 @@ if __name__ == "__main__":
     Targetdict = manager.dict()
     my_ip = scapy.get_if_addr(scapy.conf.iface)
     scan(defaultGatway, Targetdict, mask, my_ip)
-
+    #print the dictionary 
     print("Live device found: ")
     for key,value in Targetdict.items():
        print(f"IP: {key}, MAC: {value}")
