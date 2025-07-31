@@ -79,7 +79,11 @@ if __name__ == "__main__":
     Targetdict = manager.dict()
     my_ip = scapy.get_if_addr(scapy.conf.iface)
     scan(defaultGatway, Targetdict, mask, my_ip)
-    #print the dictionary 
+    #if the Targetdict is empty, it means no live devices were found in the network.
+    if(not Targetdict):
+        print("No live devices found in the network.")
+        exit(0)
+    #else, print the live devices found in the network.
     print("Live device found: ")
     for key,value in Targetdict.items():
        print(f"IP: {key}, MAC: {value}")
