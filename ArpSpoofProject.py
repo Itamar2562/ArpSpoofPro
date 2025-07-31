@@ -28,7 +28,7 @@ def GetMask() ->str:
 #scans the network for devices and stores their IP and MAC addresses in a dictionary.
 def scan(Default, Targetdict,mask, my_ip):
     print("the routers mac: ",Default+"/"+mask)
-    response,_= scapy.srp(scapy.Ether(dst="ff:ff:ff:ff:ff:ff")/scapy.ARP(pdst=defaultGatway+"/"+mask), timeout=4, verbose=0)
+    response,_= scapy.srp(scapy.Ether(dst="ff:ff:ff:ff:ff:ff")/scapy.ARP(pdst=defaultGatway+"/"+mask), timeout=5, verbose=0)
     for packet in response:
         # If the response contains an answer, extract the IP and MAC address.
         if packet.answer.psrc==my_ip or packet.answer.psrc==Default:
