@@ -26,6 +26,7 @@ This script performs **ARP spoofing** by sending malicious ARP packets to mislea
 - `getmac` – for retrieving MAC addresses using IP.
 - `time` – for handling time-related operations.
 - `multiprocessing` – for running background processes.
+- `sys` – to exit the script when no live devices are found.
 
 ---
 
