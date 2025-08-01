@@ -77,10 +77,11 @@ if __name__ == "__main__":
     my_ip = scapy.get_if_addr(scapy.conf.iface)
     scan(defaultGatway, Targetdict, mask, my_ip)
     #if the Targetdict is empty, it means no live devices were found in the network.
-    if(not Targetdict):
-        print("No live devices found in the network.")
-        time.sleep(2)
-        sys.exit(0)
+    while not Targetdict:
+        print("No live devices found in the network. would you like to scan again? (y/n): ")
+        if input().lower() != 'y':        
+            sys.exit()
+        scan(defaultGatway, Targetdict, mask, my_ip)   
     #else, print the live devices found in the network and continue into the spoofing.
     print("Live device found: ")
     for key,value in Targetdict.items():
@@ -97,3 +98,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("cntl c was pressed, stopping ARP spoofing..")
         restore(defaultGatway,True)
+
