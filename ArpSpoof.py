@@ -88,8 +88,8 @@ def sniff_packets(target_list, my_mac):
 # function gets the packets and prints them
 def packet_handler(pkt, target_list):
     try:   
-    #skip layer 2 packets
-        if scapy.IP not in pkt:
+        #skip layer 2 packets and if targets where not picked yet
+        if not target_list or scapy.IP not in pkt:
          return
         ip_src = pkt[scapy.IP].src
         ip_dst = pkt[scapy.IP].dst  
@@ -233,3 +233,4 @@ def main():
         restore(default_gateway, router_mac, targets)
 if __name__ == "__main__":
     main()
+
