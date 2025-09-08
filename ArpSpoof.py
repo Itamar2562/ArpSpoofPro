@@ -3,7 +3,6 @@ from getmac import get_mac_address
 import scapy.all as scapy
 import ipaddress
 import time
-import sys
 
 icmp_types = {
     0: "Echo Reply",
@@ -242,4 +241,5 @@ def main():
             t.join()
         restore(default_gateway, router_mac, targets)
 if __name__ == "__main__":
+
     main()
