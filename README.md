@@ -23,7 +23,9 @@ It also includes a **sniffer** to capture and display packets.
      * Enter the **target IP address** (device you want to spoof), **or**
      * Press **A** to spoof all available targets, **or**
      * Press **S** to rescan the network.
-3. Press `Ctrl + C` (KeyboardInterrupt) to **stop spoofing, restore the connection, and stop the sniffer**.
+
+3. After choosing a target press **enter** with a **blank text** to start spoofing.
+4. Press `Ctrl + C` (KeyboardInterrupt) to **stop spoofing, restore the connection, and stop the sniffer**.
 
 ---
 
@@ -45,4 +47,5 @@ Make sure to install the required libraries using pip:
 pip install scapy
 pip install getmac
 ```
+
 
