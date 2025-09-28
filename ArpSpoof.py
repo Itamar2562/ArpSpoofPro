@@ -180,7 +180,7 @@ def restore(default_gateway, router_mac, targets):
 def pick_targets(default_gateway, mask, target_dict, my_ip):
     picked_targets = {}
     while True:
-        key = input("Enter the target IP address to spoof (press enter to continue, 'cntl c' to quit, 's' to rescan, 'a' to pick all): ").lower()
+        key = input("Enter the target IP address to spoof (leave blank and press enter to continue, 'cntl c' to quit, 's' to rescan, 'a' to pick all): ").lower()
         if key == 's':
             scan(default_gateway, mask, target_dict, my_ip)
             continue
@@ -236,4 +236,5 @@ def main():
         
 if __name__ == "__main__":
     main()
+
 
