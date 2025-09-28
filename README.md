@@ -32,7 +32,6 @@ It also includes a **sniffer** to capture and display packets.
 ## Libraries Used
 
 * `scapy` – for crafting/sending ARP packets and sniffing.
-* `getmac` – for retrieving MAC addresses using IP.
 * `time` – for handling time-related operations.
 * `threading` – for running spoofing and sniffing in parallel.
 * `ipaddress` – to validate subnet masks and obtain them in CIDR format.
@@ -47,5 +46,6 @@ Make sure to install the required libraries using pip:
 pip install scapy
 pip install getmac
 ```
+
 
 
