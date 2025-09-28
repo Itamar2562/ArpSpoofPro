@@ -1,5 +1,4 @@
 import threading
-from getmac import get_mac_address
 import scapy.all as scapy
 import ipaddress
 import time
@@ -195,7 +194,7 @@ def pick_targets(default_gateway, mask, target_dict, my_ip):
 
 def main():
     default_gateway = input("Enter the default gateway: ")
-    router_mac = get_mac_address(ip=default_gateway)
+    router_mac = scapy.getmacbyip(default_gateway)
     mask = get_mask()
     threads = []
     targetdict ={}
@@ -236,5 +235,6 @@ def main():
         
 if __name__ == "__main__":
     main()
+
 
 
