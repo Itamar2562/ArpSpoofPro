@@ -46,7 +46,7 @@ def get_mask():
                 return subnet_mask
             
             # If dotted decimal
-            mask = ipaddress.IPv4Network(f"0.0.0.0/{subnet_mask}", strict=False)
+            mask = ipaddress.IPv4Network(f"0.0.0.0/{subnet_mask}")
             return str(mask.prefixlen)  # Convert to CIDR
         except (ValueError, ipaddress.NetmaskValueError):
             print("Invalid subnet mask. Please enter a valid mask.")
@@ -231,7 +231,7 @@ def main():
         stop_event.set()
         for t in threads[1::]:  # skip the sniffer thread it will exit as its daemon
             t.join()
-        restore(default_gateway, router_mac, targets)
+        restore(default_gateway, router_mac, targetdict)
         
 if __name__ == "__main__":
     main()
