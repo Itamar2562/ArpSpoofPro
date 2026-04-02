@@ -77,12 +77,13 @@ def scan(default_gateway, mask, targetdict, my_ip):
         else:
             print("Live devices found: ")
             for key, value in targetdict.items():
-                print(f"IP: {key}, MAC: {value}")
+                _,vendor=scapy.conf.manufdb.lookup(value)
+                print(f"IP: {key}, MAC: {value}, Vendor: {vendor}")
             break
 
 # sniff packets and call handler
 def sniff_packets(target_list, my_mac):
-    scapy.sniff(  filter=f"ether src not {my_mac}" ,prn=lambda pkt: packet_handler(pkt, target_list), store=False)
+    scapy.sniff(filter=f"ether src not {my_mac}" ,prn=lambda pkt: packet_handler(pkt, target_list), store=False)
     
 
 # function gets the packets and prints them
