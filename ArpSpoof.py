@@ -182,13 +182,13 @@ def pick_targets(default_gateway, mask, target_dict, my_ip):
         key = input("Enter the target IP address to spoof (leave blank and press enter to continue, 'cntl c' to quit, 's' to rescan, 'a' to pick all): ").lower()
         if key == 's':
             scan(default_gateway, mask, target_dict, my_ip)
-            continue
-        if key == 'a':
+        elif key == 'a':
             return target_dict
-        if key == "" and len(picked_targets) != 0:
+        elif key == "" and len(picked_targets) != 0:
             return picked_targets
-        if key in target_dict:
+        elif key in target_dict:
             picked_targets[key] = target_dict[key]
+            print(f"Added {key} to the list of targets to spoof.")
         else:
             print("please enter an existing device from the list above ^^^")
 
