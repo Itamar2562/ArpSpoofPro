@@ -114,7 +114,7 @@ def handle_udp(pkt):
                 answers = dns.an
                 if answers:
                     for answer in answers:
-                        if answer.type == 1:  # A record map to an IPv4 address
+                        if answer.type == 1:  # IPv4 address
                             print(f"[DNS RESPONSE] {pkt[scapy.IP].src} -> {pkt[scapy.IP].dst} : {answer.rrname.decode()} -> {answer.rdata}")
         else :
             print(f"[UDP] {pkt[scapy.IP].src} -> {pkt[scapy.IP].dst} : {pkt.summary()}")
