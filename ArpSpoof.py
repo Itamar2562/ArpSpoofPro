@@ -19,22 +19,6 @@ icmp_types = {
     16: "Information Reply"
 }
 
-icmp_codes = {
-    0: "No Code",
-    1: "Host Unreachable",
-    2: "Protocol Unreachable",
-    3: "Port Unreachable",
-    4: "Fragmentation Needed and Don't Fragment was Set",
-    5: "Source Route Failed",
-    6: "Destination Network Unknown",
-    7: "Destination Host Unknown",
-    8: "Source Host Isolated",
-    9: "Communication with Destination Network is Administratively Prohibited",
-    10: "Communication with Destination Host is Administratively Prohibited",
-    11: "Network Unreachable for ToS",
-    12: "Host Unreachable for ToS"
-}
-
 
 # function gets the subnet mask in either CIDR notation or dotted decimal format that is changed to CIDR.
 def get_mask():
@@ -124,7 +108,7 @@ def handle_udp(pkt):
 def handle_icmp(pkt):
     try:
         icmp = pkt[scapy.ICMP]
-        print(f"[ICMP] {pkt[scapy.IP].src} -> {pkt[scapy.IP].dst} : type: {icmp_types.get(icmp.type,str(icmp.type))}, code: {icmp_codes.get(icmp.code,str(icmp.code))}, payload: {icmp.payload.summary()}")
+        print(f"[ICMP] {pkt[scapy.IP].src} -> {pkt[scapy.IP].dst} : type: {icmp_types.get(icmp.type,str(icmp.type))}, code: {str(icmp.code)}, payload: {icmp.payload.summary()}")
     except Exception as e:
         print(f"Error while processing packet: {e}")
 
